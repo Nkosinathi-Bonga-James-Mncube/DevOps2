@@ -1,0 +1,20 @@
+---
+- hosts: ec2_instances
+  remote_user: "{{ ansible_ssh_user }}"
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: Check if docker is installed
+      command: docker --version
+      register: docker_version
+      ignore_errors: true
+
+    - name: Install docker
+      include_role:
+        name: docker
+      when: docker_version.rc != 0
+
+  roles:
+    - grafana
+    - prometheus

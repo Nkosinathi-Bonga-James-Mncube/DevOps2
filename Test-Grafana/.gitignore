@@ -1,0 +1,4 @@
+credentials.yml
+tf_ec2_key.pem
+hosts.ini
+stop.yml
