@@ -3,6 +3,8 @@
   remote_user: "{{ ansible_ssh_user }}"
   become: true
   become_method: sudo
+  vars:
+    ansible_python_interpreter: /usr/bin/python3 
 
   tasks:
     - name: Check if docker is installed
@@ -17,4 +19,5 @@
 
   roles:
     - grafana
+    - node_exporter
     - prometheus
